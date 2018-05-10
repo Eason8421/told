@@ -61,11 +61,13 @@ public class Servant implements Runnable {
                 break;
 
                 case  Message.TIME:
-                    if(this.source.equals(message.getSource())) {
-                        String[] question = {dateString};
+                    if(this.source!=null) {
+                        if(this.source.equals(message.getSource())) {
+                            String[] question = {dateString};
 
-                        for (String time : question ) {
-                            write(new ChatMessage("現在時間", time));
+                            for (String time : question) {
+                                write(new ChatMessage("現在時間", time));
+                            }
                         }
                     }
                     //this.write(new ChatMessage("現在時間:",dateString));
