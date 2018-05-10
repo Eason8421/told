@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.Socket;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Servant implements Runnable {
@@ -13,9 +15,10 @@ public class Servant implements Runnable {
     private Socket socket = null;
 
     private ChatRoom room = null;
-    Date date=new Date();
+    /*Date date=new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String dateString = sdf.format(date);
+    String dateString = sdf.format(date);*/
+
 
     public Servant(Socket socket, ChatRoom room) {
         this.room = room;
@@ -61,6 +64,9 @@ public class Servant implements Runnable {
                 break;
 
                 case  Message.TIME:
+                    Date date=new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String dateString = sdf.format(date);
                     if(this.source!=null) {
                         if(this.source.equals(message.getSource())) {
                             String[] question = {dateString};
